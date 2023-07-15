@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Inductive Coupling AI Client</string>
+    <string name="speak">Tap to speak</string>
+    <string name="tap_to_speak">Tap the mic to speak</string>
+    <string name="listening">Listening…</string>
+    <string name="loading">Generating Response…</string>
+    <string name="url">Enter server url</string>
+    <string name="save">Save</string>
+    <string name="you">You: %s</string>
+    <string name="bot">Bot: %s</string>
+</resources>
