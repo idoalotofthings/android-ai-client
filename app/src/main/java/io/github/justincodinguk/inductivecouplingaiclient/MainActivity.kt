@@ -104,7 +104,9 @@ class MainActivity : ComponentActivity() {
             override fun onRmsChanged(p0: Float) {}
             override fun onBufferReceived(p0: ByteArray?) {}
             override fun onEndOfSpeech() {}
-            override fun onError(p0: Int) {}
+            override fun onError(p0: Int) {
+                viewModel.disableMic()
+            }
             override fun onPartialResults(p0: Bundle?) {}
             override fun onEvent(p0: Int, p1: Bundle?) {}
 
@@ -146,9 +148,13 @@ class MainActivity : ComponentActivity() {
 
                 MicButton(
                     onClick = {
-                        viewModel.enableMic()
-                        textToSpeech.stop()
-                        speechRecognizer.startListening(recognizerIntent)
+                        if(micButtonState is MicState.MicDisabledState) {
+                            viewModel.enableMic()
+                            textToSpeech.stop()
+                            speechRecognizer.startListening(recognizerIntent)
+                        } else if(micButtonState is MicState.MicListeningState) {
+                            viewModel.disableMic()
+                        }
                     },
                     state = micButtonState,
                     modifier = Modifier.padding(16.dp)

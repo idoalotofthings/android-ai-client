@@ -57,6 +57,10 @@ class AiClientViewModel(dataStore: DataStore<Preferences>) : ViewModel() {
     fun enableMic() {
         _micState.value = MicState.MicListeningState
     }
+
+    fun disableMic() {
+        _micState.value = MicState.MicDisabledState
+    }
 }
 
 class AiViewModelFactory(private val dataStore: DataStore<Preferences>): ViewModelProvider.Factory {
