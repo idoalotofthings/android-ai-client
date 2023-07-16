@@ -3,6 +3,7 @@ package io.github.justincodinguk.inductivecouplingaiclient.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,14 +44,23 @@ fun UrlAlertDialog(viewModel: AiClientViewModel, onSubmit: () -> Unit) {
                     onValueChange = {
                         urlFieldValue = it
                     },
-                    modifier = Modifier.padding(8.dp)
+                    modifier = Modifier.padding(8.dp),
+                    keyboardActions = KeyboardActions(
+                        onDone = {
+                            viewModel.setUrl(urlFieldValue.text)
+                            onSubmit()
+                        }
+                    ),
+                    singleLine = true
                 )
 
                 Button(
                     onClick = {
                         viewModel.setUrl(urlFieldValue.text)
                         onSubmit()
-                    }) {
+                    },
+                    modifier = Modifier.padding(8.dp)
+                ) {
                     Text(stringResource(id = R.string.save))
                 }
             }
